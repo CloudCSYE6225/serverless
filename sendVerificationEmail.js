@@ -5,7 +5,7 @@ const EmailVerification = require('./emailModel');
 
 const domain = process.env.DOMAIN;
 const mg = mailgun({apiKey: process.env.APIKEY, domain: domain});
-const port = 3000;
+const port = 443;
 
 
 exports.sendVerificationEmail = async (message, context) => {
@@ -21,7 +21,7 @@ exports.sendVerificationEmail = async (message, context) => {
     const expirationTime = new Date(Date.now() + 2 * 60000);
     const userEmail = userData.email;
     const verification_code = generateVerificationCode();
-    const verificationLink = `http://${domain}:${port}/verify?code=${verification_code}`; 
+    const verificationLink = `https://${domain}:${port}/verify?code=${verification_code}`; 
 
     const emailData = {
 
